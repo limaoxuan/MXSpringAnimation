@@ -10,9 +10,11 @@ import UIKit
 
 public enum AnimationType{
    
-    case Scale // This type can zoom in or zoom out
-
-
+    case ElasticScale // This type can Elastic zoom in or Elastic zoom out
+    case NormalScale  // This is a normal scale animation
+    case NormalY
+    case NormalX
+    
 
 }
 
@@ -20,11 +22,19 @@ public enum AnimationType{
 
 
 
-func MXShowAnimation(currentView:UIView,type:AnimationType){
- 
+func MXShowAnimation(currentView:UIView,type:AnimationType,obj: NSDictionary){
+//    nso
+    
     switch type {
-    case .Scale :
-      scaleShowAnimation(currentView)
+    case .ElasticScale :
+      elasticScaleShowAnimation(currentView)
+    case .NormalScale:
+  
+        nomalScaleAnimation(currentView,obj)
+    case .NormalY:
+        print("")
+        nomalYAnimation(currentView, obj)
+        
     default:
         break
         
@@ -45,8 +55,8 @@ func MXDismissAnimation(currentView:UIView,type:AnimationType){
 
 
     switch type {
-    case .Scale :
-        scaleDissmissAnimation(currentView)
+    case .ElasticScale :
+        elasticScaleDissmissAnimation(currentView)
     default:
         break
 
@@ -60,8 +70,51 @@ func MXDismissAnimation(currentView:UIView,type:AnimationType){
 
 }
 
+func nomalYAnimation(currentView:UIView,obj : NSDictionary){
 
-func scaleShowAnimation(currentView:UIView){
+let layerPosition = currentView.layer.position
+    
+    print(layerPosition.y)
+    
+    
+    
+    let keyframeAnimation = CAKeyframeAnimation(keyPath: "transform.translation.y")
+    let toValue = obj.objectForKey("toValue") as! CGFloat
+    
+    let fromValue = obj.objectForKey("fromValue") as! CGFloat
+    keyframeAnimation.values = [fromValue,toValue]
+    keyframeAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear),CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)]
+    keyframeAnimation.keyTimes = [0,1.0]
+    keyframeAnimation.autoreverses = false
+    keyframeAnimation.removedOnCompletion = false
+    keyframeAnimation.fillMode = kCAFillModeForwards
+    keyframeAnimation.duration = 0.6
+    currentView.layer.addAnimation(keyframeAnimation, forKey: "exchangeScale")
+
+
+
+
+
+}
+
+func nomalScaleAnimation(currentView:UIView,obj : NSDictionary){
+
+    let toScale = obj.objectForKey("toScale") as! CGFloat
+    let fromScale = obj.objectForKey("fromScale") as! CGFloat
+    let layerPosition = currentView.layer.position
+    let keyframeAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
+    keyframeAnimation.values = [fromScale,toScale]
+     keyframeAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear),CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)]
+    keyframeAnimation.keyTimes = [0,1.0]
+    keyframeAnimation.autoreverses = false
+    keyframeAnimation.removedOnCompletion = false
+    keyframeAnimation.fillMode = kCAFillModeForwards
+    keyframeAnimation.duration = 0.6
+    currentView.layer.addAnimation(keyframeAnimation, forKey: "nomalScale")
+}
+
+
+func elasticScaleShowAnimation(currentView:UIView){
 
     
 
@@ -86,12 +139,12 @@ func scaleShowAnimation(currentView:UIView){
     //        currentView.layer.position = CGPointMake(layerPosition.x, layerPosition.y)
     keyframeAnimation.duration = 0.6
     
-    currentView.layer.addAnimation(keyframeAnimation, forKey: "showCale")
+    currentView.layer.addAnimation(keyframeAnimation, forKey: "showScale")
 
 
 }
 
-func scaleDissmissAnimation(currentView:UIView){
+func elasticScaleDissmissAnimation(currentView:UIView){
 
     let layerPosition = currentView.layer.position
     let keyframeAnimation = CAKeyframeAnimation(keyPath: "transform.scale")

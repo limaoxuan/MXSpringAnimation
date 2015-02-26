@@ -9,15 +9,104 @@
 import UIKit
 import CoreData
 
+let appBackgroundTopDistance  : CGFloat = 20
+let mapViewTopDistance : CGFloat = 92
+let iconWith :CGFloat = 49
+let iconHeight :CGFloat = 44
+let iconTopDistance :CGFloat = 19
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var appBackground : UIImageView?
+    var mapView : UIImageView?
+    var mapShowStatus : Bool = false
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        appBackground = UIImageView()
+        appBackground?.image = UIImage(named: "app-bg")
+        appBackground?.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.window?.addSubview(appBackground!)
+        
+        let appBackgroundLocationH = "H:|-0-[appBackground]-0-|"
+        let appBackgroundLocationV = "V:|-\(appBackgroundTopDistance)-[appBackground(\(screenHeight-appBackgroundTopDistance))]"
+        let appBackgroundViewDic = (["appBackground":appBackground!]) as NSDictionary
+        setConstraintsWithStringHandVWithCurrentView(appBackgroundLocationH, appBackgroundLocationV, self.window!, appBackgroundViewDic)
+        
+        
+        mapView = UIImageView()
+        mapView?.image = UIImage(named: "map-arrow")
+        mapView?.setTranslatesAutoresizingMaskIntoConstraints(false)
+        mapView?.alpha = 0
+               self.window?.addSubview(mapView!)
+        
+        let mapViewLocationH = "H:|-0-[mapView]-0-|"
+        let mapViewLocationV = "V:|-\(mapViewTopDistance)-[mapView(\(screenHeight-mapViewTopDistance))]"
+        let mapViewDic = (["mapView":mapView!]) as NSDictionary
+
+        setConstraintsWithStringHandVWithCurrentView(mapViewLocationH, mapViewLocationV, self.window!, mapViewDic)
+        mapView?.transform = CGAffineTransformMakeScale(0.9, 0.9)
+//            CGAffineTransformScale(mapView!.transform, 0.8, 0.8)
+
+        
+        
+        let icon = UIButton()
+        icon.setImage(UIImage(named: "map-icon"), forState: UIControlState.Normal)
+        icon.setTranslatesAutoresizingMaskIntoConstraints(false)
+        icon.addTarget(self, action: "didTapIcon:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.window?.addSubview(icon)
+        
+        let iconLocationH = "H:|-\(screenWidth-iconWith)-[icon(\(iconWith))]"
+        let iconLocationV = "V:|-\(iconTopDistance)-[icon(\(iconHeight))]"
+        let iconButtonDic = (["icon":icon]) as NSDictionary
+        setConstraintsWithStringHandVWithCurrentView(iconLocationH, iconLocationV, self.window!, iconButtonDic)
+        
+        
+        
         return true
+    }
+    
+    func didTapIcon(sender:UIButton){
+        if mapShowStatus {
+        // 隐藏地图
+            mapShowStatus = false
+
+            
+            
+        
+        } else {
+        
+           
+        mapShowStatus = true
+        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.appBackground?.alpha = 0.3
+        }, completion: nil)
+            self.appBackground!.layoutIfNeeded()
+            self.appBackground!.layer.removeAllAnimations()
+            let scaleAppBackgroundDic = ["toScale":0.9,"fromScale":1.0] as NSDictionary
+          MXShowAnimation(self.appBackground!, AnimationType.NormalScale,scaleAppBackgroundDic)
+        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.mapView!.alpha = 1
+        }, completion: nil)
+             let mapViewScaleDic = ["toScale":1.0,"fromScale":0.9] as NSDictionary
+            
+            self.mapView!.layoutIfNeeded()
+            self.mapView!.layer.removeAllAnimations()
+            MXShowAnimation(self.mapView!, AnimationType.NormalScale,mapViewScaleDic)
+            self.mapView!.layoutIfNeeded()
+//            self.mapView!.layer.removeAllAnimations()
+            let mapViewYDic = ["toValue":-10,"fromValue":10] as NSDictionary
+            MXShowAnimation(self.mapView!, AnimationType.NormalY, mapViewYDic)
+            
+        }
+    
+    
+    
+    
     }
 
     func applicationWillResignActive(application: UIApplication) {

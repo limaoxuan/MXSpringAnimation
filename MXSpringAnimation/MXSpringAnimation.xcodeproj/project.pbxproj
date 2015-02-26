@@ -15,6 +15,8 @@
 		9B9FD2811A90557200244A7A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B9FD27F1A90557200244A7A /* LaunchScreen.xib */; };
 		9B9FD28D1A90557200244A7A /* MXSpringAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FD28C1A90557200244A7A /* MXSpringAnimationTests.swift */; };
 		9B9FD2971A9056E400244A7A /* MXSpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FD2961A9056E400244A7A /* MXSpringAnimation.swift */; };
+		9B9FD2991A9D987500244A7A /* MXConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FD2981A9D987500244A7A /* MXConstrains.swift */; };
+		9BAF2B8A1A9D9A4000E52015 /* MXEaseNormalTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAF2B891A9D9A4000E52015 /* MXEaseNormalTools.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		9B9FD28B1A90557200244A7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B9FD28C1A90557200244A7A /* MXSpringAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXSpringAnimationTests.swift; sourceTree = "<group>"; };
 		9B9FD2961A9056E400244A7A /* MXSpringAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXSpringAnimation.swift; sourceTree = "<group>"; };
+		9B9FD2981A9D987500244A7A /* MXConstrains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXConstrains.swift; sourceTree = "<group>"; };
+		9BAF2B891A9D9A4000E52015 /* MXEaseNormalTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXEaseNormalTools.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 		9B9FD2701A90557200244A7A /* MXSpringAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				9BAF2B891A9D9A4000E52015 /* MXEaseNormalTools.swift */,
+				9B9FD2981A9D987500244A7A /* MXConstrains.swift */,
 				9B9FD2961A9056E400244A7A /* MXSpringAnimation.swift */,
 				9B9FD2731A90557200244A7A /* AppDelegate.swift */,
 				9B9FD2781A90557200244A7A /* ViewController.swift */,
@@ -219,9 +225,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B9FD2791A90557200244A7A /* ViewController.swift in Sources */,
+				9BAF2B8A1A9D9A4000E52015 /* MXEaseNormalTools.swift in Sources */,
 				9B9FD2971A9056E400244A7A /* MXSpringAnimation.swift in Sources */,
 				9B9FD2771A90557200244A7A /* MXSpringAnimation.xcdatamodeld in Sources */,
 				9B9FD2741A90557200244A7A /* AppDelegate.swift in Sources */,
+				9B9FD2991A9D987500244A7A /* MXConstrains.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +425,7 @@
 				9B9FD2921A90557200244A7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9B9FD2931A90557200244A7A /* Build configuration list for PBXNativeTarget "MXSpringAnimationTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +434,7 @@
 				9B9FD2951A90557200244A7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
