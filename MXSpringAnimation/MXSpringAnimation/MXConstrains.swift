@@ -41,7 +41,7 @@ func setLocationAccrodingWithSuperViewAndCurrentViewSetLayoutAttributeCenterY(su
     superView.addConstraint(constaraint)
 }
 
-func setLocationAccrodingWithSuperViewAndCurrentViewSetLayoutAttributeCenterX(superView :UIView,currentView:UIView,width:Int)->Void{
+func setLocationAccrodingWithSuperViewAndCurrentViewSetLayoutAttributeCenterX(superView :UIView,currentView:UIView,width:String)->Void{
 
     
     let dic = ["currentView":currentView]
@@ -67,7 +67,7 @@ This is setting a view that It is in the superview center
 :param: superView   父亲视图
 :param: currentView 儿子视图
 */
-func setLocationCurrentInSuperViewlocationCenter(superView :UIView,currentView:UIView,width:Int,height:Int)->Void{
+func setLocationCurrentInSuperViewlocationCenter(superView :UIView,currentView:UIView,width:String,height:Int)->Void{
 
 
     setLocationAccrodingWithSuperViewAndCurrentViewSetLayoutAttributeCenterX(superView, currentView,width)

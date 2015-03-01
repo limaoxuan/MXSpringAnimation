@@ -15,18 +15,318 @@ let iconWith :CGFloat = 49
 let iconHeight :CGFloat = 44
 let iconTopDistance :CGFloat = 19
 
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+// 运动结构体
+    struct movement {
+      var  movementObject : AnyObject
+        var movementLine : String
+        var movementName :String
+        
+    }
+    
     var window: UIWindow?
     var appBackground : UIImageView?
     var mapView : UIImageView?
     var mapShowStatus : Bool = false
-
+    var songList : NSMutableDictionary !
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
+        self.window?.backgroundColor = UIColor.whiteColor()
+        
+        self.window?.makeKeyAndVisible()
+        
+//        var backgroundView = uim
+       
+        audioPlayer()
+        
+        
+        return true
+    }
+    
+    func audioPlayer(){
+    
+    var movementArray = [movement]()
+    
+    songList = NSMutableDictionary()
+    
+        let backgroundView = UIImageView()
+        backgroundView.image = UIImage(named: "background")
+        backgroundView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.window?.addSubview(backgroundView)
+        
+        let backgroundViewLocationH = "H:|-0-[backgroundView]-0-|"
+        let backgroundViewLocationV = "V:|-0-[backgroundView]-0-|"
+        let backgroundViewDic = (["backgroundView":backgroundView]) as NSDictionary
+        
+        setConstraintsWithStringHandVWithCurrentView(backgroundViewLocationH, backgroundViewLocationV, self.window!, backgroundViewDic)
+        
+        
+        let arrowView = UIImageView()
+//        arrowView.
+        arrowView.image = UIImage(named: "arrow")
+        var  size = arrowView.image?.size
+        print(size)
+//        image.co
+        arrowView.contentMode = UIViewContentMode.ScaleAspectFill
+        arrowView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        self.window?.addSubview(arrowView)
+        setLocationAccrodingWithSuperViewAndCurrentViewSetLayoutAttributeCenterX(self.window!, arrowView, ">=320@960")
+        
+        
+//        let arrowViewLocationH = "H:|-5-[arrowView(>=320@960)]"
+         let arrowViewLocationH = "H:|-\(2*screenWidth)-[arrowView(>=320@960)]"
+        let arrowViewLocationV = "V:|-0-[arrowView]"
+        let arrowViewDic = (["arrowView":arrowView]) as NSDictionary
+        setConstraintsWithStringHandVWithCurrentView(arrowViewLocationH, arrowViewLocationV, self.window!, arrowViewDic)
+        
+        
+        let ministryView = UIImageView()
+        ministryView.contentMode = UIViewContentMode.ScaleAspectFill
+        ministryView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        ministryView.image = UIImage(named: "ministry")
+        self.window?.addSubview(ministryView)
+        
+        
+        
+        
+    setLocationAccrodingWithSuperViewAndCurrentViewSetLayoutAttributeCenterX(self.window!, ministryView, ">=320@960")
+        let ministryLocationH = "H:|-\(2*screenWidth)-[ministryView(>=320@960)]"
+        let ministryLocationY = "V:|-56-[ministryView]"
+        let ministryDic = (["ministryView":ministryView]) as NSDictionary
+        setConstraintsWithStringHandVWithCurrentView(ministryLocationH, ministryLocationY, self.window!, ministryDic)
+
+        let addButton = UIButton()
+        addButton.contentMode = UIViewContentMode.ScaleAspectFill
+        addButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        addButton.setImage(UIImage(named: "add-button"), forState: UIControlState.Normal)
+        addButton.setImage(UIImage(named: "add-button-pressed"), forState: UIControlState.Highlighted)
+        self.window?.addSubview(addButton)
+        setLocationAccrodingWithSuperViewAndCurrentViewSetLayoutAttributeCenterX(self.window!, addButton, ">=320@960")
+        
+        let addButtonLocationH = "H:|-\(2*screenWidth)-[addButton(>=320@960)]"
+        let addButtonLocationY = "V:|-102-[addButton]"
+        let addButtonDic = (["addButton":addButton]) as NSDictionary
+        setConstraintsWithStringHandVWithCurrentView(addButtonLocationH, addButtonLocationY, self.window!, addButtonDic)
+
+
+        
+        var imageNameArray : [String] = ["1st-row","2nd-row","3rd-row","4th-row","5th-row"]
+        accrodingArrayInitSongsList(imageNameArray)
+        
+        
+    
+        
+        
+        let   arrowViewMovement = movement(movementObject: arrowView, movementLine: "H:|-5-[arrowView(>=320@960)]",movementName:"arrowView")
+        movementArray.append(arrowViewMovement)
+        
+        let ministryViewMovement = movement(movementObject: ministryView, movementLine: "H:|-0-[ministryView(>=320@960)]", movementName: "ministryView")
+        movementArray.append(ministryViewMovement)
+
+        let addButtonMovement = movement(movementObject: addButton, movementLine: "H:|-0-[addButton(>=320@960)]", movementName: "addButton")
+        movementArray.append(addButtonMovement)
+        
+        for i in 1...imageNameArray.count {
+            
+            let imageView = self.window?.viewWithTag(i)
+            
+            
+            let anyBodyImageMovement = movement(movementObject: imageView!, movementLine: "H:|-0-[currentImage(>=\(screenWidth)@960)]", movementName: "currentImage")
+            movementArray.append(anyBodyImageMovement)
+            
+        }
+        
+        
+        
+        
+        animationStart(movementArray)
+    }
+    
+    func animationStart(array: [movement]){
+                var initDelay = 1.0
+        //
+                let stutter = 0.15
+        //
+                let duration = 1.1
+        
+        for i in 0...array.count-1 {
+        
+        
+        
+            let   someObjectMovement =  array[i] as movement
+        
+                    someObjectMovement.movementObject.layoutIfNeeded()
+        
+                    UIView.animateWithDuration(duration, delay: initDelay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: UIViewAnimationOptions.allZeros, animations: { () -> Void in
+            
+                        
+                        setConstraintsWithStringWithCurrentView(someObjectMovement.movementLine, self.window!, [someObjectMovement.movementName:someObjectMovement.movementObject])
+                         someObjectMovement.movementObject.layoutIfNeeded()
+            
+                        
+                        initDelay += stutter
+                    }, completion: nil)
+        
+        
+        
+        }
+    
+    
+    
+    
+    }
+    
+    func accrodingArrayInitSongsList(imageArray:[String]){
+    
+
+        for i in 0...imageArray.count-1 {
+        
+        accrodingImageNameInitSongList(imageArray[i],index: Int(i+1))
+        
+        
+        
+        }
+
+    
+    }
+    
+    
+    
+    func accrodingImageNameInitSongList(imageName : String,index :Int){
+        
+        
+        
+        
+        var someRowDic : Dictionary<String,UIImageView>!
+        var someRowLocationH : String!
+        var someRowLocationY : String!
+        let imageName = imageName as String
+        let someRow = UIImageView()
+        
+        
+        someRow.image = UIImage(named: imageName)
+        someRow.tag =  index
+        someRow.setTranslatesAutoresizingMaskIntoConstraints(false)
+        someRow.contentMode = UIViewContentMode.ScaleAspectFill
+        self.window?.addSubview(someRow)
+        
+
+        someRowDic = Dictionary()
+        // 第一次
+        if(songList.count == 0 ){
+         someRowDic = [imageName : someRow]
+            
+            someRowDic["currentImage"] =  someRow
+         someRowLocationY = "V:|-170-[currentImage]"
+            
+        }else
+        {
+//        第二次
+        
+            
+            someRowDic["currentImage"] = someRow
+            someRowDic["lastImageName"] = songList.allValues.last as? UIImageView
+             someRowLocationY = "V:[lastImageName]-0-[currentImage]"
+           
+        
+        }
+        songList.setObject(someRow, forKey: "imageName")
+
+         someRowLocationH = "H:|-\(screenWidth)-[currentImage(>=\(screenWidth)@960)]"
+        
+        
+        setConstraintsWithStringHandVWithCurrentView(someRowLocationH, someRowLocationY, self.window!, someRowDic  )
+
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    }
+    
+    
+    
+    
+    func didTapIcon(sender:UIButton){
+        if mapShowStatus {
+            
+            self.appBackground!.layoutIfNeeded()
+//            self.appBackground!.layer.removeAllAnimations()
+//            self.mapView?.layer.removeAllAnimations()
+//        // 隐藏地图
+            mapShowStatus = false
+            UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                self.appBackground!.alpha = 1
+            }, completion: nil)
+            self.appBackground!.layoutIfNeeded()
+            
+            let scaleZoomInMapView = ["toScale":1.0,"fromScale":0.9] as NSDictionary
+            MXShowAnimation(self.appBackground!, AnimationType.NormalScale,scaleZoomInMapView)
+            
+            // 地图视图代码
+            UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                self.mapView!.alpha = 0
+            }, completion: nil)
+        
+            let mapViewScaleZoomOutDic = ["toScale":0.9,"fromScale":1.0] as NSDictionary
+            
+            self.mapView!.layoutIfNeeded()
+         
+            MXShowAnimation(self.mapView!, AnimationType.NormalScale,mapViewScaleZoomOutDic)
+            self.mapView!.layoutIfNeeded()
+            //            self.mapView!.layer.removeAllAnimations()
+            let mapViewYDic = ["toValue":10,"fromValue":-10] as NSDictionary
+            MXShowAnimation(self.mapView!, AnimationType.NormalY, mapViewYDic)
+
+            
+            
+            
+        } else {
+        
+           
+        mapShowStatus = true
+        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.appBackground?.alpha = 0.3
+        }, completion: nil)
+            self.appBackground!.layoutIfNeeded()
+//            self.appBackground!.layer.removeAllAnimations()
+            let scaleAppBackgroundDic = ["toScale":0.9,"fromScale":1.0] as NSDictionary
+          MXShowAnimation(self.appBackground!, AnimationType.NormalScale,scaleAppBackgroundDic)
+        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            self.mapView!.alpha = 1
+        }, completion: nil)
+             let mapViewScaleDic = ["toScale":1.0,"fromScale":0.9] as NSDictionary
+            
+            self.mapView!.layoutIfNeeded()
+            
+            MXShowAnimation(self.mapView!, AnimationType.NormalScale,mapViewScaleDic)
+            
+//            self.mapView!.layer.removeAllAnimations()
+            let mapViewYDic = ["toValue":-10,"fromValue":10] as NSDictionary
+            MXShowAnimation(self.mapView!, AnimationType.NormalY, mapViewYDic)
+            
+        }
+    
+    
+    
+    
+    }
+    
+    func mapExample(){
+    
+    
         appBackground = UIImageView()
         appBackground?.image = UIImage(named: "app-bg")
         appBackground?.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -42,16 +342,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mapView?.image = UIImage(named: "map-arrow")
         mapView?.setTranslatesAutoresizingMaskIntoConstraints(false)
         mapView?.alpha = 0
-               self.window?.addSubview(mapView!)
+        self.window?.addSubview(mapView!)
         
         let mapViewLocationH = "H:|-0-[mapView]-0-|"
         let mapViewLocationV = "V:|-\(mapViewTopDistance)-[mapView(\(screenHeight-mapViewTopDistance))]"
         let mapViewDic = (["mapView":mapView!]) as NSDictionary
-
+        
         setConstraintsWithStringHandVWithCurrentView(mapViewLocationH, mapViewLocationV, self.window!, mapViewDic)
         mapView?.transform = CGAffineTransformMakeScale(0.9, 0.9)
-//            CGAffineTransformScale(mapView!.transform, 0.8, 0.8)
-
+        //            CGAffineTransformScale(mapView!.transform, 0.8, 0.8)
+        
         
         
         let icon = UIButton()
@@ -64,50 +364,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let iconLocationV = "V:|-\(iconTopDistance)-[icon(\(iconHeight))]"
         let iconButtonDic = (["icon":icon]) as NSDictionary
         setConstraintsWithStringHandVWithCurrentView(iconLocationH, iconLocationV, self.window!, iconButtonDic)
-        
-        
-        
-        return true
-    }
-    
-    func didTapIcon(sender:UIButton){
-        if mapShowStatus {
-        // 隐藏地图
-            mapShowStatus = false
 
-            
-            
-        
-        } else {
-        
-           
-        mapShowStatus = true
-        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-            self.appBackground?.alpha = 0.3
-        }, completion: nil)
-            self.appBackground!.layoutIfNeeded()
-            self.appBackground!.layer.removeAllAnimations()
-            let scaleAppBackgroundDic = ["toScale":0.9,"fromScale":1.0] as NSDictionary
-          MXShowAnimation(self.appBackground!, AnimationType.NormalScale,scaleAppBackgroundDic)
-        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-            self.mapView!.alpha = 1
-        }, completion: nil)
-             let mapViewScaleDic = ["toScale":1.0,"fromScale":0.9] as NSDictionary
-            
-            self.mapView!.layoutIfNeeded()
-            self.mapView!.layer.removeAllAnimations()
-            MXShowAnimation(self.mapView!, AnimationType.NormalScale,mapViewScaleDic)
-            self.mapView!.layoutIfNeeded()
-//            self.mapView!.layer.removeAllAnimations()
-            let mapViewYDic = ["toValue":-10,"fromValue":10] as NSDictionary
-            MXShowAnimation(self.mapView!, AnimationType.NormalY, mapViewYDic)
-            
-        }
+    
     
     
     
     
     }
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
