@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Foundation
 
 let appBackgroundTopDistance  : CGFloat = 20
 let mapViewTopDistance : CGFloat = 92
@@ -19,6 +20,9 @@ let iconTopDistance :CGFloat = 19
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    
+    
 // 运动结构体
     struct movement {
       var  movementObject : AnyObject
@@ -27,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    var imageLayer : CALayer!
     var window: UIWindow?
     var appBackground : UIImageView?
     var mapView : UIImageView?
@@ -43,11 +48,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        var backgroundView = uim
        
-        audioPlayer()
+
         
         
+//        startAnimation()
+//        audioPlayer()
+        
+
         return true
     }
+    
+    
+    
+    func startAnimation(){
+    
+    
+    
+        let image = UIImage(named: "起始图片")
+        self.window?.contentMode = UIViewContentMode.ScaleAspectFill
+        self.window?.layer.masksToBounds = true
+        self.window?.layer.contents = image?.CGImage
+        
+        
+        
+        let image2 = UIImage(named: "结束图片")
+        let mapViewYDic = ["newImage":image2!,"x":0,"y":0,"width":screenWidth/2,"height":screenWidth/2]
+        
+        
+        MXShowAnimation(self.window!, AnimationType.Content, mapViewYDic)
+
+    }
+
+    
+    
+    
     
     func audioPlayer(){
     

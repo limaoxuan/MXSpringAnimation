@@ -14,6 +14,9 @@ let screenWidth = UIScreen.mainScreen().bounds.width
 
 let screenHeight = UIScreen.mainScreen().bounds.height
 
+let screenFrame = UIScreen.mainScreen().bounds
+
+
 
 /**
 This is color encapsulation. You can use conveniently.
@@ -31,4 +34,44 @@ return UIColor(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: a)
 
 }
 
+func RED()->UIColor{
+
+return UIColor.redColor()
+    
+}
+
+func BLACK()->UIColor{
+
+
+return UIColor.blackColor()
+
+
+}
+
+func YELLOW()->UIColor{
+
+
+return UIColor.yellowColor()
+
+}
+
+func BLUE()->UIColor{
+
+return UIColor.blueColor()
+
+
+}
+
+func DARKGRAY()->UIColor{
+
+return UIColor.darkGrayColor()
+
+}
+
+func GREEN()->UIColor{
+
+
+return UIColor.greenColor()
+
+}
 

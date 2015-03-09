@@ -14,6 +14,7 @@ public enum AnimationType{
     case NormalScale  // This is a normal scale animation
     case NormalY
     case NormalX
+    case Content      // require a instead of  image Or layer
     
 
 }
@@ -34,7 +35,9 @@ func MXShowAnimation(currentView:UIView,type:AnimationType,obj: NSDictionary){
     case .NormalY:
         print("")
         nomalYAnimation(currentView, obj)
-        
+    case .Content:
+        contentAnimation(currentView,obj)
+    
     default:
         break
         
@@ -47,6 +50,52 @@ func MXShowAnimation(currentView:UIView,type:AnimationType,obj: NSDictionary){
     
     
 
+
+
+}
+
+
+func contentAnimation(currentView:UIView,obj : NSDictionary){
+
+    let changeImage = obj.objectForKey("newImage") as? UIImage
+    
+    
+    let changeX = obj.objectForKey("x") as? CGFloat
+    let changeY = obj.objectForKey("y") as? CGFloat
+    let changeWidth = obj.objectForKey("width") as? CGFloat
+    let changeHeight = obj.objectForKey("height") as? CGFloat
+
+    let contentsAnimation = CABasicAnimation(keyPath: "contents")
+    contentsAnimation.fromValue = currentView.layer.contents
+    contentsAnimation.toValue = changeImage?.CGImage
+    contentsAnimation.duration = 2.0
+    //        imageLayer.contents = image2?.CGImage
+    contentsAnimation.autoreverses = false
+    contentsAnimation.removedOnCompletion = false
+    contentsAnimation.fillMode = kCAFillModeForwards
+    
+    
+    //        let boundsAnimation = CABasicAnimation(ke
+    let boundsAnimation =  CABasicAnimation(keyPath: "bounds")
+    //        boundsAnimation.fromValue = nsva
+    boundsAnimation.fromValue = NSValue(CGRect: currentView.layer.bounds)
+    boundsAnimation.toValue = NSValue(CGRect: CGRectMake(changeX!, changeY!, changeWidth!, changeHeight!))
+    boundsAnimation.duration = 2.0
+    boundsAnimation.autoreverses = false
+    boundsAnimation.removedOnCompletion = false
+    boundsAnimation.fillMode = kCAFillModeForwards
+    
+    let groupAnimation = CAAnimationGroup()
+    groupAnimation.animations = [contentsAnimation,boundsAnimation]
+    
+    groupAnimation.autoreverses = false
+    groupAnimation.removedOnCompletion = false
+    groupAnimation.fillMode = kCAFillModeForwards
+    groupAnimation.duration = 2.0
+    currentView.layer.addAnimation(groupAnimation, forKey: "ContentAndBounds")
+
+    
+    
 
 
 }
