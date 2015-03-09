@@ -51,7 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
         
-//        startAnimation()
+        startAnimation()
+        // second animation
 //        audioPlayer()
         
 
