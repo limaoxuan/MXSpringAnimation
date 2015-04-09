@@ -23,274 +23,114 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     
-// 运动结构体
-    struct movement {
-      var  movementObject : AnyObject
-        var movementLine : String
-        var movementName :String
-        
-    }
+
     
     var imageLayer : CALayer!
+    var maskLayer : CALayer!
+    
+    var imageContents : UIImage!
+    var maskContents : UIImage!
+    
     var window: UIWindow?
     var appBackground : UIImageView?
     var mapView : UIImageView?
     var mapShowStatus : Bool = false
-    var songList : NSMutableDictionary !
+
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        
-        self.window?.backgroundColor = UIColor.whiteColor()
-        
-        self.window?.makeKeyAndVisible()
+//        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//        
+//        self.window?.backgroundColor = UIColor.whiteColor()
+//        
+//        self.window?.makeKeyAndVisible()
         
 //        var backgroundView = uim
        
 
         
         
-        startAnimation()
+//        startAnimation()
         // second animation
 //        audioPlayer()
-        
+        initMaskAnimation()
+      
+
 
         return true
     }
     
+   func initMaskAnimation(){
     
     
-    func startAnimation(){
     
     
     
-        let image = UIImage(named: "起始图片")
-        self.window?.contentMode = UIViewContentMode.ScaleAspectFill
-        self.window?.layer.masksToBounds = true
-        self.window?.layer.contents = image?.CGImage
+    self.window?.backgroundColor  = UIColor.blackColor()
+    
+    self.imageContents = UIImage(named: "girl")
+    self.maskContents  = UIImage(named: "maskLayerContents")
+    
+    self.imageLayer                  =  CALayer()
+    self.imageLayer.frame            =  CGRectMake(90, 220, 200, 200)
+    self.imageLayer.contents         =  self.imageContents.CGImage
+    self.window?.contentMode         =  UIViewContentMode.ScaleAspectFill
+    self.window?.layer.masksToBounds =  true
+    self.window?.layer.addSublayer(self.imageLayer)
+    
+    self.maskLayer                   =  CALayer()
+    self.maskLayer.frame             =  CGRectMake(-100, 0, 200,200)
+    self.maskLayer.contents = self.maskContents.CGImage
+    self.imageLayer.mask = self.maskLayer
+    
+    let  delayInSeconds = 2.0;
+    
+    var minutes = 1 * Double(NSEC_PER_SEC)
+    
+    var dtime = dispatch_time(DISPATCH_TIME_NOW, Int64(minutes))
+    dispatch_after(dtime, dispatch_get_main_queue()) { () -> Void in
         
         
         
-        let image2 = UIImage(named: "结束图片")
-        let mapViewYDic = ["newImage":image2!,"x":0,"y":0,"width":screenWidth/2,"height":screenWidth/2]
+        self.maskLayerAnimation()
         
-        
-        MXShowAnimation(self.window!, AnimationType.Content, mapViewYDic)
-
     }
-
-    
-    
-    
-    
-    func audioPlayer(){
-    
-    var movementArray = [movement]()
-    
-    songList = NSMutableDictionary()
-    
-        let backgroundView = UIImageView()
-        backgroundView.image = UIImage(named: "background")
-        backgroundView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.window?.addSubview(backgroundView)
-        
-        let backgroundViewLocationH = "H:|-0-[backgroundView]-0-|"
-        let backgroundViewLocationV = "V:|-0-[backgroundView]-0-|"
-        let backgroundViewDic = (["backgroundView":backgroundView]) as NSDictionary
-        
-        setConstraintsWithStringHandVWithCurrentView(backgroundViewLocationH, backgroundViewLocationV, self.window!, backgroundViewDic)
-        
-        
-        let arrowView = UIImageView()
-//        arrowView.
-        arrowView.image = UIImage(named: "arrow")
-        var  size = arrowView.image?.size
-        print(size)
-//        image.co
-        arrowView.contentMode = UIViewContentMode.ScaleAspectFill
-        arrowView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        
-        self.window?.addSubview(arrowView)
-        setLocationAccrodingWithSuperViewAndCurrentViewSetLayoutAttributeCenterX(self.window!, arrowView, ">=320@960")
-        
-        
-//        let arrowViewLocationH = "H:|-5-[arrowView(>=320@960)]"
-         let arrowViewLocationH = "H:|-\(2*screenWidth)-[arrowView(>=320@960)]"
-        let arrowViewLocationV = "V:|-0-[arrowView]"
-        let arrowViewDic = (["arrowView":arrowView]) as NSDictionary
-        setConstraintsWithStringHandVWithCurrentView(arrowViewLocationH, arrowViewLocationV, self.window!, arrowViewDic)
-        
-        
-        let ministryView = UIImageView()
-        ministryView.contentMode = UIViewContentMode.ScaleAspectFill
-        ministryView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        ministryView.image = UIImage(named: "ministry")
-        self.window?.addSubview(ministryView)
-        
-        
-        
-        
-    setLocationAccrodingWithSuperViewAndCurrentViewSetLayoutAttributeCenterX(self.window!, ministryView, ">=320@960")
-        let ministryLocationH = "H:|-\(2*screenWidth)-[ministryView(>=320@960)]"
-        let ministryLocationY = "V:|-56-[ministryView]"
-        let ministryDic = (["ministryView":ministryView]) as NSDictionary
-        setConstraintsWithStringHandVWithCurrentView(ministryLocationH, ministryLocationY, self.window!, ministryDic)
-
-        let addButton = UIButton()
-        addButton.contentMode = UIViewContentMode.ScaleAspectFill
-        addButton.setTranslatesAutoresizingMaskIntoConstraints(false)
-        addButton.setImage(UIImage(named: "add-button"), forState: UIControlState.Normal)
-        addButton.setImage(UIImage(named: "add-button-pressed"), forState: UIControlState.Highlighted)
-        self.window?.addSubview(addButton)
-        setLocationAccrodingWithSuperViewAndCurrentViewSetLayoutAttributeCenterX(self.window!, addButton, ">=320@960")
-        
-        let addButtonLocationH = "H:|-\(2*screenWidth)-[addButton(>=320@960)]"
-        let addButtonLocationY = "V:|-102-[addButton]"
-        let addButtonDic = (["addButton":addButton]) as NSDictionary
-        setConstraintsWithStringHandVWithCurrentView(addButtonLocationH, addButtonLocationY, self.window!, addButtonDic)
-
-
-        
-        var imageNameArray : [String] = ["1st-row","2nd-row","3rd-row","4th-row","5th-row"]
-        accrodingArrayInitSongsList(imageNameArray)
-        
-        
-    
-        
-        
-        let   arrowViewMovement = movement(movementObject: arrowView, movementLine: "H:|-5-[arrowView(>=320@960)]",movementName:"arrowView")
-        movementArray.append(arrowViewMovement)
-        
-        let ministryViewMovement = movement(movementObject: ministryView, movementLine: "H:|-0-[ministryView(>=320@960)]", movementName: "ministryView")
-        movementArray.append(ministryViewMovement)
-
-        let addButtonMovement = movement(movementObject: addButton, movementLine: "H:|-0-[addButton(>=320@960)]", movementName: "addButton")
-        movementArray.append(addButtonMovement)
-        
-        for i in 1...imageNameArray.count {
-            
-            let imageView = self.window?.viewWithTag(i)
-            
-            
-            let anyBodyImageMovement = movement(movementObject: imageView!, movementLine: "H:|-0-[currentImage(>=\(screenWidth)@960)]", movementName: "currentImage")
-            movementArray.append(anyBodyImageMovement)
-            
-        }
-        
-        
-        
-        
-        animationStart(movementArray)
-    }
-    
-    func animationStart(array: [movement]){
-                var initDelay = 1.0
-        //
-                let stutter = 0.15
-        //
-                let duration = 1.1
-        
-        for i in 0...array.count-1 {
-        
-        
-        
-            let   someObjectMovement =  array[i] as movement
-        
-                    someObjectMovement.movementObject.layoutIfNeeded()
-        
-                    UIView.animateWithDuration(duration, delay: initDelay, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: UIViewAnimationOptions.allZeros, animations: { () -> Void in
-            
-                        
-                        setConstraintsWithStringWithCurrentView(someObjectMovement.movementLine, self.window!, [someObjectMovement.movementName:someObjectMovement.movementObject])
-                         someObjectMovement.movementObject.layoutIfNeeded()
-            
-                        
-                        initDelay += stutter
-                    }, completion: nil)
-        
-        
-        
-        }
-    
-    
     
     
     }
     
-    func accrodingArrayInitSongsList(imageArray:[String]){
+    func maskLayerAnimation(){
     
+//        let oldBounds = CGRectMake(100, 0, 200,200)
+        
+        print()
+        
+        let newBounds = CGRectMake(-100, 0, 200,200)
+        
+       let maskAnimation = CABasicAnimation(keyPath: "bounds")
+        
+        maskAnimation.fromValue = NSValue(CGRect: self.maskLayer.bounds)
+        maskAnimation.toValue = NSValue(CGRect: newBounds)
+        maskAnimation.duration = 1.0
+        maskAnimation.autoreverses = false
+        maskAnimation.removedOnCompletion = false
+        maskAnimation.fillMode = kCAFillModeForwards
+        self.imageLayer.addAnimation(maskAnimation, forKey: "mask")
 
-        for i in 0...imageArray.count-1 {
-        
-        accrodingImageNameInitSongList(imageArray[i],index: Int(i+1))
-        
-        
-        
-        }
 
     
     }
     
     
     
-    func accrodingImageNameInitSongList(imageName : String,index :Int){
-        
-        
-        
-        
-        var someRowDic : Dictionary<String,UIImageView>!
-        var someRowLocationH : String!
-        var someRowLocationY : String!
-        let imageName = imageName as String
-        let someRow = UIImageView()
-        
-        
-        someRow.image = UIImage(named: imageName)
-        someRow.tag =  index
-        someRow.setTranslatesAutoresizingMaskIntoConstraints(false)
-        someRow.contentMode = UIViewContentMode.ScaleAspectFill
-        self.window?.addSubview(someRow)
-        
-
-        someRowDic = Dictionary()
-        // 第一次
-        if(songList.count == 0 ){
-         someRowDic = [imageName : someRow]
-            
-            someRowDic["currentImage"] =  someRow
-         someRowLocationY = "V:|-170-[currentImage]"
-            
-        }else
-        {
-//        第二次
-        
-            
-            someRowDic["currentImage"] = someRow
-            someRowDic["lastImageName"] = songList.allValues.last as? UIImageView
-             someRowLocationY = "V:[lastImageName]-0-[currentImage]"
-           
-        
-        }
-        songList.setObject(someRow, forKey: "imageName")
-
-         someRowLocationH = "H:|-\(screenWidth)-[currentImage(>=\(screenWidth)@960)]"
-        
-        
-        setConstraintsWithStringHandVWithCurrentView(someRowLocationH, someRowLocationY, self.window!, someRowDic  )
-
-        
-        
-        
-        
-        
-        
-        
-        
+   
     
     
-    }
     
+    
+       
+      
+        
     
     
     
@@ -308,7 +148,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.appBackground!.layoutIfNeeded()
             
             let scaleZoomInMapView = ["toScale":1.0,"fromScale":0.9] as NSDictionary
-            MXShowAnimation(self.appBackground!, AnimationType.NormalScale,scaleZoomInMapView)
+//            MXShowAnimation(self.appBackground!, AnimationType.NormalScale,scaleZoomInMapView)
+            
+            MXSpringAnimation.sharedMXSpringAnimation.MXShowAnimation(self.appBackground!, type: AnimationType.NormalScale, obj: scaleZoomInMapView) { (finished) -> Void in
+                
+                }
+
+            
+            
             
             // 地图视图代码
             UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
@@ -319,11 +166,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.mapView!.layoutIfNeeded()
          
-            MXShowAnimation(self.mapView!, AnimationType.NormalScale,mapViewScaleZoomOutDic)
+            
+            
+            MXSpringAnimation.sharedMXSpringAnimation.MXShowAnimation(self.mapView!, type: AnimationType.NormalScale, obj: mapViewScaleZoomOutDic) { (finished) -> Void in
+                
+            }
+            
+            
             self.mapView!.layoutIfNeeded()
             //            self.mapView!.layer.removeAllAnimations()
             let mapViewYDic = ["toValue":10,"fromValue":-10] as NSDictionary
-            MXShowAnimation(self.mapView!, AnimationType.NormalY, mapViewYDic)
+            
+            MXSpringAnimation.sharedMXSpringAnimation.MXShowAnimation(self.mapView!, type: AnimationType.NormalY, obj: mapViewYDic) { (finished) -> Void in
+                
+            }
+
+            
+       
 
             
             
@@ -332,13 +191,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
            
         mapShowStatus = true
+//            UIView.animateWithDuration(<#duration: NSTimeInterval#>, animations: <#() -> Void##() -> Void#>)
+            
+//            UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+//                
+//            }, completion: nil)
+            
+            
         UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-            self.appBackground?.alpha = 0.3
+            
+            
+            
+           self.appBackground!.alpha = 0.3
+            
+            
+            
+            
+            
         }, completion: nil)
+            
             self.appBackground!.layoutIfNeeded()
 //            self.appBackground!.layer.removeAllAnimations()
             let scaleAppBackgroundDic = ["toScale":0.9,"fromScale":1.0] as NSDictionary
-          MXShowAnimation(self.appBackground!, AnimationType.NormalScale,scaleAppBackgroundDic)
+            
+            
+            MXSpringAnimation.sharedMXSpringAnimation.MXShowAnimation(self.appBackground!, type: AnimationType.NormalScale, obj: scaleAppBackgroundDic) { (finished) -> Void in
+                
+            }
+  
+            
+          
         UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.mapView!.alpha = 1
         }, completion: nil)
@@ -346,11 +228,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.mapView!.layoutIfNeeded()
             
-            MXShowAnimation(self.mapView!, AnimationType.NormalScale,mapViewScaleDic)
+            MXSpringAnimation.sharedMXSpringAnimation.MXShowAnimation(self.mapView!, type: AnimationType.NormalScale, obj: mapViewScaleDic) { (finished) -> Void in
+                
+            }
+
+            
+            
             
 //            self.mapView!.layer.removeAllAnimations()
             let mapViewYDic = ["toValue":-10,"fromValue":10] as NSDictionary
-            MXShowAnimation(self.mapView!, AnimationType.NormalY, mapViewYDic)
+            
+            
+            
+            MXSpringAnimation.sharedMXSpringAnimation.MXShowAnimation(self.mapView!, type: AnimationType.NormalY, obj: mapViewYDic) { (finished) -> Void in
+                
+            }
+           
             
         }
     
@@ -437,7 +330,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.lee.MXSpringAnimation" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.count-1] as! NSURL
+        return urls[urls.count-1] as NSURL
     }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {

@@ -14,7 +14,7 @@ func setConstraintsWithStringWithCurrentView(format : String,superView : UIView,
     
     
     
-    var constaraints = NSLayoutConstraint.constraintsWithVisualFormat(format, options: NSLayoutFormatOptions(0), metrics: nil, views:viewDic as! [NSObject : AnyObject])
+    var constaraints = NSLayoutConstraint.constraintsWithVisualFormat(format, options: NSLayoutFormatOptions(0), metrics: nil, views:viewDic as [NSObject : AnyObject])
     superView.addConstraints(constaraints)
     
 }
@@ -28,7 +28,7 @@ func setConstraintsWithStringHandVWithCurrentView(formatH : String,formatV : Str
     
 }
 
-func setLocationAccrodingWithSuperViewAndCurrentViewSetLayoutAttributeCenterY(superView :UIView,currentView:UIView,height:Int)->Void{
+func setLocationAccrodingWithSuperViewAndCurrentViewSetLayoutAttributeCenterY(superView :UIView,currentView:UIView,height:String)->Void{
 
 
     let dic = ["currentView":currentView]
@@ -67,7 +67,7 @@ This is setting a view that It is in the superview center
 :param: superView   父亲视图
 :param: currentView 儿子视图
 */
-func setLocationCurrentInSuperViewlocationCenter(superView :UIView,currentView:UIView,width:String,height:Int)->Void{
+func setLocationCurrentInSuperViewlocationCenter(superView :UIView,currentView:UIView,width:String,height:String)->Void{
 
 
     setLocationAccrodingWithSuperViewAndCurrentViewSetLayoutAttributeCenterX(superView, currentView,width)

@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B2D781A1AAD33AC0099450C /* MXEaseNormalTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D78191AAD33AC0099450C /* MXEaseNormalTools.swift */; };
+		9B7F57241ACE681F00C22E5B /* MXConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F57231ACE681F00C22E5B /* MXConstrains.swift */; };
+		9B7F57261ACE785700C22E5B /* MXEaseNormalTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F57251ACE785700C22E5B /* MXEaseNormalTools.swift */; };
+		9B7F57281ACE7E9200C22E5B /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F57271ACE7E9200C22E5B /* ContentViewController.swift */; };
+		9B7F572D1ACE842F00C22E5B /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F572C1ACE842F00C22E5B /* AudioViewController.swift */; };
+		9B7F572F1ACE86D400C22E5B /* MaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F572E1ACE86D400C22E5B /* MaskViewController.swift */; };
+		9B7F573A1AD61E4800C22E5B /* MXSpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F57391AD61E4800C22E5B /* MXSpringAnimation.swift */; };
+		9B7F573C1AD61EB500C22E5B /* CAAnimation+Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7F573B1AD61EB500C22E5B /* CAAnimation+Closures.swift */; };
 		9B9FD2741A90557200244A7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FD2731A90557200244A7A /* AppDelegate.swift */; };
 		9B9FD2771A90557200244A7A /* MXSpringAnimation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FD2751A90557200244A7A /* MXSpringAnimation.xcdatamodeld */; };
 		9B9FD2791A90557200244A7A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FD2781A90557200244A7A /* ViewController.swift */; };
@@ -15,8 +21,6 @@
 		9B9FD27E1A90557200244A7A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B9FD27D1A90557200244A7A /* Images.xcassets */; };
 		9B9FD2811A90557200244A7A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B9FD27F1A90557200244A7A /* LaunchScreen.xib */; };
 		9B9FD28D1A90557200244A7A /* MXSpringAnimationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FD28C1A90557200244A7A /* MXSpringAnimationTests.swift */; };
-		9B9FD2971A9056E400244A7A /* MXSpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FD2961A9056E400244A7A /* MXSpringAnimation.swift */; };
-		9B9FD2991A9D987500244A7A /* MXConstrains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FD2981A9D987500244A7A /* MXConstrains.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +34,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9B2D78191AAD33AC0099450C /* MXEaseNormalTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXEaseNormalTools.swift; sourceTree = "<group>"; };
+		9B7F57231ACE681F00C22E5B /* MXConstrains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXConstrains.swift; sourceTree = "<group>"; };
+		9B7F57251ACE785700C22E5B /* MXEaseNormalTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXEaseNormalTools.swift; sourceTree = "<group>"; };
+		9B7F57271ACE7E9200C22E5B /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		9B7F572C1ACE842F00C22E5B /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		9B7F572E1ACE86D400C22E5B /* MaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaskViewController.swift; sourceTree = "<group>"; };
+		9B7F57391AD61E4800C22E5B /* MXSpringAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXSpringAnimation.swift; sourceTree = "<group>"; };
+		9B7F573B1AD61EB500C22E5B /* CAAnimation+Closures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CAAnimation+Closures.swift"; sourceTree = "<group>"; };
 		9B9FD26E1A90557200244A7A /* MXSpringAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MXSpringAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B9FD2721A90557200244A7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B9FD2731A90557200244A7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,8 +52,6 @@
 		9B9FD2861A90557200244A7A /* MXSpringAnimationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MXSpringAnimationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B9FD28B1A90557200244A7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B9FD28C1A90557200244A7A /* MXSpringAnimationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXSpringAnimationTests.swift; sourceTree = "<group>"; };
-		9B9FD2961A9056E400244A7A /* MXSpringAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXSpringAnimation.swift; sourceTree = "<group>"; };
-		9B9FD2981A9D987500244A7A /* MXConstrains.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MXConstrains.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +72,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B7F57291ACE835F00C22E5B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9B9FD2781A90557200244A7A /* ViewController.swift */,
+				9B7F57271ACE7E9200C22E5B /* ContentViewController.swift */,
+				9B7F572C1ACE842F00C22E5B /* AudioViewController.swift */,
+				9B7F572E1ACE86D400C22E5B /* MaskViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		9B7F572A1ACE838300C22E5B /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				9B7F57251ACE785700C22E5B /* MXEaseNormalTools.swift */,
+				9B7F57231ACE681F00C22E5B /* MXConstrains.swift */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		9B7F572B1ACE839000C22E5B /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				9B7F573B1AD61EB500C22E5B /* CAAnimation+Closures.swift */,
+				9B7F57391AD61E4800C22E5B /* MXSpringAnimation.swift */,
+			);
+			name = Animation;
+			sourceTree = "<group>";
+		};
 		9B9FD2651A90557200244A7A = {
 			isa = PBXGroup;
 			children = (
@@ -85,11 +122,10 @@
 		9B9FD2701A90557200244A7A /* MXSpringAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				9B2D78191AAD33AC0099450C /* MXEaseNormalTools.swift */,
-				9B9FD2981A9D987500244A7A /* MXConstrains.swift */,
-				9B9FD2961A9056E400244A7A /* MXSpringAnimation.swift */,
+				9B7F572B1ACE839000C22E5B /* Animation */,
+				9B7F572A1ACE838300C22E5B /* Tools */,
+				9B7F57291ACE835F00C22E5B /* Controller */,
 				9B9FD2731A90557200244A7A /* AppDelegate.swift */,
-				9B9FD2781A90557200244A7A /* ViewController.swift */,
 				9B9FD27A1A90557200244A7A /* Main.storyboard */,
 				9B9FD27D1A90557200244A7A /* Images.xcassets */,
 				9B9FD27F1A90557200244A7A /* LaunchScreen.xib */,
@@ -224,12 +260,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B7F573C1AD61EB500C22E5B /* CAAnimation+Closures.swift in Sources */,
+				9B7F57241ACE681F00C22E5B /* MXConstrains.swift in Sources */,
+				9B7F57261ACE785700C22E5B /* MXEaseNormalTools.swift in Sources */,
 				9B9FD2791A90557200244A7A /* ViewController.swift in Sources */,
-				9B2D781A1AAD33AC0099450C /* MXEaseNormalTools.swift in Sources */,
-				9B9FD2971A9056E400244A7A /* MXSpringAnimation.swift in Sources */,
 				9B9FD2771A90557200244A7A /* MXSpringAnimation.xcdatamodeld in Sources */,
+				9B7F573A1AD61E4800C22E5B /* MXSpringAnimation.swift in Sources */,
+				9B7F572D1ACE842F00C22E5B /* AudioViewController.swift in Sources */,
 				9B9FD2741A90557200244A7A /* AppDelegate.swift in Sources */,
-				9B9FD2991A9D987500244A7A /* MXConstrains.swift in Sources */,
+				9B7F572F1ACE86D400C22E5B /* MaskViewController.swift in Sources */,
+				9B7F57281ACE7E9200C22E5B /* ContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +346,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -344,7 +384,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cE2-5a-r8W">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="MC3-al-Tib">
+            <objects>
+                <navigationController id="cE2-5a-r8W" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zJO-RM-c3C">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="m1Z-SJ-eOA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qHJ-pr-Qw9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1017" y="175"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -13,13 +29,93 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="I8y-4g-5tY">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="V1q-Bi-qbi">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V1q-Bi-qbi" id="EjP-lM-Bb8">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="I8y-4g-5tY" secondAttribute="trailing" id="0RQ-mf-P38"/>
+                            <constraint firstItem="I8y-4g-5tY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="2hf-Y1-Lhi"/>
+                            <constraint firstItem="I8y-4g-5tY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="526-ix-Qze"/>
+                            <constraint firstAttribute="bottom" secondItem="I8y-4g-5tY" secondAttribute="bottom" id="Df8-3g-iL1"/>
+                            <constraint firstItem="I8y-4g-5tY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="NWN-cv-lAq"/>
+                            <constraint firstItem="I8y-4g-5tY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="eMx-sO-lFq"/>
+                            <constraint firstItem="I8y-4g-5tY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lk9-BQ-aIp"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="I8y-4g-5tY" secondAttribute="bottom" id="nDu-Tm-oFa"/>
+                            <constraint firstAttribute="trailing" secondItem="I8y-4g-5tY" secondAttribute="trailing" id="pAr-LN-3VB"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2hf-Y1-Lhi"/>
+                                <exclude reference="Df8-3g-iL1"/>
+                                <exclude reference="eMx-sO-lFq"/>
+                                <exclude reference="lk9-BQ-aIp"/>
+                                <exclude reference="pAr-LN-3VB"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="jRi-e2-ynJ"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="tableView" destination="I8y-4g-5tY" id="5UL-7N-qeB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-310" y="175"/>
+        </scene>
+        <!--Content View Controller-->
+        <scene sceneID="v0S-WT-UPj">
+            <objects>
+                <viewController storyboardIdentifier="ContentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CRd-Wi-yWO" customClass="ContentViewController" customModule="MXSpringAnimation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F4r-q5-43L"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zx2-qk-T1e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ssK-2u-O0u">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="87Y-ya-4b7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="144" y="175"/>
+        </scene>
+        <!--Audio View Controller-->
+        <scene sceneID="7cm-Aw-tFL">
+            <objects>
+                <viewController storyboardIdentifier="AudioViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="98M-A3-jfp" customClass="AudioViewController" customModule="MXSpringAnimation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A6I-pi-0Zs"/>
+                        <viewControllerLayoutGuide type="bottom" id="6OY-Wb-1mL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8JE-3y-ZFA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NkU-qW-Ig2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="617" y="175"/>
         </scene>
     </scenes>
 </document>

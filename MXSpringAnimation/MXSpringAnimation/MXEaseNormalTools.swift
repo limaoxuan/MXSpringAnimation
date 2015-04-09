@@ -14,8 +14,6 @@ let screenWidth = UIScreen.mainScreen().bounds.width
 
 let screenHeight = UIScreen.mainScreen().bounds.height
 
-let screenFrame = UIScreen.mainScreen().bounds
-
 
 
 /**
@@ -75,3 +73,41 @@ return UIColor.greenColor()
 
 }
 
+func CLEAR()->UIColor{
+
+
+return UIColor.clearColor()
+
+}
+
+
+func getAppdelegate()->AppDelegate{
+
+
+return UIApplication.sharedApplication().delegate as AppDelegate
+
+
+}
+
+
+//
+func getStoryBoard()->UIStoryboard{
+
+
+    let board = UIStoryboard(name: "Main", bundle: nil)
+    
+    return board
+
+}
+
+func getMainStoryboardInstance(className:String)->UIViewController{
+
+
+let controller = getStoryBoard().instantiateViewControllerWithIdentifier(className) as UIViewController
+
+return controller
+
+
+}
+
+//
